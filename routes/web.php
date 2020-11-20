@@ -7,6 +7,7 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\StatusesController;
+use App\Http\Controllers\FollowersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,3 +43,7 @@ Route::resource('statuses', StatusesController::class, ['only' => ['store', 'des
 
 Route::get('/users/{user}/followings', [UsersController::class, 'followings'])->name('users.followings');
 Route::get('/users/{user}/followers', [UsersController::class, 'followers'])->name('users.followers');
+
+
+Route::post('/users/followers/{user}', [FollowersController::class, 'store'])->name('followers.store');
+Route::delete('/users/followers/{user}', [FollowersController::class, 'destroy'])->name('followers.destroy');
