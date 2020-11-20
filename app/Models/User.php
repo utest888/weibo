@@ -16,7 +16,7 @@ class User extends Authenticatable
     {
         $hash = md5(strtolower(trim($this->attributes['email'])));
 
-        return "http://www.gravatar.com/avatar/$hash?s=$size"; 
+        return "http://www.gravatar.com/avatar/$hash?s=$size";
     }
 
     /**
@@ -48,4 +48,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    protected function serializeDate(\DateTimeInterface $data)
+    {
+        return $data->format($this->dateFormat ?: 'Y-m-d H:i:s');
+    }
 }
