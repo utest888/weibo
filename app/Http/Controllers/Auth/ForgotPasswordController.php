@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\PasswordResets;
+use App\Models\PasswordReset;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -28,7 +28,7 @@ class ForgotPasswordController extends Controller
             session()->flash('warning', "邮箱地址不存在");
         } else {
 
-            $passwordReset = PasswordResets::create([
+            $passwordReset = PasswordReset::create([
                 'email' => $user->email,
                 'token' => Str::random(64),
                 'created_at' => time()

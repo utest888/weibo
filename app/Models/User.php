@@ -12,6 +12,11 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
+    public function statuses()
+    {
+        return $this->hasMany(Status::class);
+    }
+
 
     public function gravatar($size = 100)
     {

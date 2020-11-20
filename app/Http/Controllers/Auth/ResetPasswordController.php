@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\PasswordResets;
+use App\Models\PasswordReset;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -30,7 +30,7 @@ class ResetPasswordController extends Controller
             'password' => ['required', 'confirmed', 'min:6']
         ]);
 
-        $passwrodReset = PasswordResets::where('email', $request->email)->where('token', $request->token)->first();
+        $passwrodReset = PasswordReset::where('email', $request->email)->where('token', $request->token)->first();
         if (!empty($passwrodReset)) {
             $user = User::where('email', $request->email)->first();
 
@@ -38,7 +38,7 @@ class ResetPasswordController extends Controller
                 $user->password = bcrypt($request->password);
                 $user->save();
 
-                PasswordResets::where('email', $request->email)->where('token', $request->token)->delete();
+                PasswordReset::where('email', $request->email)->where('token', $request->token)->delete();
 
                 session()->flash('success', '密码已重置');
                 return redirect()->route('login');
