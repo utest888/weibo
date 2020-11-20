@@ -13,4 +13,9 @@ class Status extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    protected function serializeDate(\DateTimeInterface $data)
+    {
+        return $data->format($this->dateFormat ?: 'Y-m-d H:i:s');
+    }
 }
