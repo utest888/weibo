@@ -13,7 +13,7 @@ class Status extends Model
         'content'
     ];
 
-    public function users()
+    public function user()
     {
         return $this->belongsTo(User::class);
     }

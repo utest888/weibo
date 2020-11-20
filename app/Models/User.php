@@ -12,6 +12,11 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
+    public function feed()
+    {
+        return $this->statuses()->orderBy('created_at', 'desc');
+    }
+
     public function statuses()
     {
         return $this->hasMany(Status::class);
