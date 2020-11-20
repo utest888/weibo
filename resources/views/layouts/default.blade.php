@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>@yield('title','Weibo App') - Peter's Test Project</title>
+</head>
+
+<body>
+    @yield('content')
+</body>
+
+</html>
